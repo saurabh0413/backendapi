@@ -4,7 +4,7 @@ const cors = require('cors')
 const app = express();
 
 
-const PORT = 9090;
+const PORT = 8090;
 app.use(express.json());
 app.use(cors());
 app.listen(PORT, async() => {
