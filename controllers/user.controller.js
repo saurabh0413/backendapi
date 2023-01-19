@@ -1,9 +1,12 @@
 const { signupModel, loginModel } = require("../models/user.model");
-require("dotenv").config();
+
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const { default: mongoose } = require("mongoose");
+require("dotenv").config();
+mongoose.set("strictQuery", false);
 const signupController = async (req, res) => {
-  const { email, password} = req.body;
+  const { email, password } = req.body;
 
   bcrypt.hash(password, 5, async function (err, hash) {
     if (err) {
@@ -11,7 +14,7 @@ const signupController = async (req, res) => {
     } else {
       const user = new signupModel({
         email: email,
-        password: hash
+        password: hash,
       });
       await user.save();
       res.send(user);

@@ -3,7 +3,7 @@ const { connection } = require("./config/db");
 const cors = require('cors');
 const { userRoute } = require("./routes/user.routes");
 const app = express();
-const PORT = 1090;
+
 app.use(express.json());
 app.use(cors());
 app.get("/", (req, res) => {
@@ -12,7 +12,7 @@ app.get("/", (req, res) => {
 
 app.use("/user", userRoute);
 
-app.listen(PORT, async() => {
+app.listen(8787, async() => {
     try {
         await connection;
         console.log("connection established");

@@ -1,5 +1,6 @@
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
+mongoose.set('strictQuery', true);
 const authentication = async (req, res, next) => {
   if (!req.headers.authorization) {
     return res.send("please login again");
