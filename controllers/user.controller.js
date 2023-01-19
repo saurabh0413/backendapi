@@ -3,7 +3,7 @@ const { signupModel, loginModel } = require("../models/user.model");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const { default: mongoose } = require("mongoose");
-require("dotenv").config();
+
 mongoose.set("strictQuery", false);
 const signupController = async (req, res) => {
   const { email, password } = req.body;
@@ -32,7 +32,7 @@ const loginController = async (req, res) => {
 
   bcrypt.compare(password, hashed_pass, function (err, result) {
     if (result) {
-      const token = jwt.sign({ userId: result1._id }, process.env.SECRET_KEY);
+      const token = jwt.sign({ userId: result1._id }, "abcd1234");
       res.send({ msg: "login success", token: token });
     } else {
       res.send("Login Failed");
