@@ -1,12 +1,17 @@
 const express = require("express");
 const { connection } = require("./config/db");
-const cors = require('cors')
+const cors = require('cors');
+const { userRoute } = require("./routes/user.routes");
 const app = express();
-
-
-const PORT = 8090;
+const PORT = 9090;
 app.use(express.json());
 app.use(cors());
+app.get("/", (req, res) => {
+  res.send("welcome to home page");
+});
+
+app.use("/user", userRoute);
+
 app.listen(PORT, async() => {
     try {
         await connection;
